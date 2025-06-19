@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校园风采 - 滇池学院</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<script>
+    // 检查登录状态并更新UI
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (currentUser) {
+            // 更新导航栏 - 显示用户名
+            const navbar = document.querySelector('.navbar-nav');
+            const welcomeItem = document.createElement('li');
+            welcomeItem.className = 'nav-item';
+            welcomeItem.innerHTML = `
+            <a class="nav-link text-white">
+                <i class="fas fa-user me-1"></i>欢迎, ${currentUser.name}
+            </a>
+        `;
+
+            // 在登录按钮前插入欢迎信息
+            const loginItem = document.querySelector('.nav-item:last-child');
+            navbar.insertBefore(welcomeItem, loginItem);
+
+            // 将登录按钮改为登出按钮
+            loginItem.innerHTML = `
+            <a class="btn btn-danger" href="#" id="logoutBtn">
+                <i class="fas fa-sign-out-alt me-1"></i>登出
+            </a>
+        `;
+
+            // 添加登出功能
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                window.location.href = 'login.html';
+            });
+
+            // 更新欢迎区域
+            const welcomeSection = document.querySelector('.hero-section');
+            if (welcomeSection) {
+                const welcomeText = welcomeSection.querySelector('p');
+                if (welcomeText) {
+                    welcomeText.innerHTML = `欢迎回来，${currentUser.name}！探索校园之美，共享学术成就，体验多彩生活`;
+                }
+            }
+        }
+    });
+</script>
+<body>
+<!-- 导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark-green fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">
+            <img src="img/logo.png" alt="校园风采" height="40">
+            滇池学院校园风采
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html">首页</a></li>
+                <li class="nav-item"><a class="nav-link" href="achievements.html">成就展示</a></li>
+                <li class="nav-item"><a class="nav-link" href="study.html">学习中心</a></li>
+                <li class="nav-item"><a class="nav-link" href="campus-life.html">校园生活</a></li>
+                <li class="nav-item">
+                    <a class="btn btn-primary-green" href="login.html">登录/注册</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- 欢迎区域 -->
+<header class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-3 fw-bold text-white mb-4">欢迎来到滇池学院校园风采</h1>
+        <p class="lead text-light mb-5">探索校园之美，共享学术成就，体验多彩生活</p>
+        <div class="welcome-animation">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+</header>
+
+<!-- 时间轴 -->
+<section class="py-5 bg-light-green">
+    <div class="container">
+        <h2 class="text-center mb-5 section-title">校园时光记忆</h2>
+        <div class="timeline">
+            <!-- 时间轴内容 -->
+        </div>
+    </div>
+</section>
+
+<!-- 功能区域 -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- 成就展示 -->
+            <div class="col-md-4">
+                <div class="card h-100 feature-card">
+                    <img src="img/achievements.jpg" class="card-img-top" alt="成就展示">
+                    <div class="card-body">
+                        <h3 class="card-title">成就展示</h3>
+                        <p class="card-text">展示学校近年来的主要成就、创新成果和学生竞赛获奖情况。</p>
+                        <a href="achievements.html" class="btn btn-primary-green">查看详情</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学习中心 -->
+            <div class="col-md-4">
+                <div class="card h-100 feature-card">
+                    <img src="img/study.jpg" class="card-img-top" alt="学习中心">
+                    <div class="card-body">
+                        <h3 class="card-title">学习中心</h3>
+                        <p class="card-text">推荐相关课程、电子书籍和研究资料，助力学习成长。</p>
+                        <a href="study.html" class="btn btn-primary-green">探索资源</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 校园生活 -->
+            <div class="col-md-4">
+                <div class="card h-100 feature-card">
+                    <img src="img/campus-life.jpg" class="card-img-top" alt="校园生活">
+                    <div class="card-body">
+                        <h3 class="card-title">校园生活</h3>
+                        <p class="card-text">社团活动、市集、手工艺品展示，感受多彩校园文化。</p>
+                        <a href="campus-life.html" class="btn btn-primary-green">体验生活</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="bg-dark-green text-white py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5>滇池学院校园风采</h5>
+                <p>展示校园成就，共享学习资源，体验多彩生活</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5>快速链接</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html" class="text-light">首页</a></li>
+                    <li><a href="achievements.html" class="text-light">成就展示</a></li>
+                    <li><a href="study.html" class="text-light">学习中心</a></li>
+                    <li><a href="campus-life.html" class="text-light">校园生活</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>联系我们</h5>
+                <p>邮箱：contact@example.com</p>
+                <p>电话：123-456-7890</p>
+                <div class="social-icons">
+                    <a href="#" class="text-light me-2"><i class="fab fa-weixin"></i></a>
+                    <a href="#" class="text-light me-2"><i class="fab fa-qq"></i></a>
+                    <a href="#" class="text-light"><i class="fab fa-weibo"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr class="bg-light">
+        <p class="text-center mb-0">&copy; 2025 滇池学院 计算机科学与技术专业</p>
+    </div>
+</footer>
+
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
