@@ -1,0 +1,269 @@
+/* 配色方案 */
+:root {
+    --primary-bg: #c3d0c3;
+    --dark-green: #1c312c;
+    --accent-green: #819c55;
+    --secondary-green-1: #a2b38b;
+    --secondary-green-2: #e8f4e8;
+    --secondary-green-3: #5a7250;
+    --secondary-green-4: #d1e0d1;
+}
+
+/* 全局样式 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--dark-green);
+    background-color: var(--secondary-green-2);
+    padding-top: 80px;
+}
+
+/* 导航栏样式 */
+.bg-dark-green {
+    background-color: var(--dark-green) !important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    margin-right: 10px;
+}
+
+.nav-link {
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: var(--accent-green);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* 按钮样式 */
+.btn {
+    border-radius: 30px;
+    padding: 8px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-primary-green {
+    background-color: var(--accent-green);
+    border-color: var(--accent-green);
+    color: white;
+}
+
+.btn-primary-green:hover {
+    background-color: var(--secondary-green-3);
+    border-color: var(--secondary-green-3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 欢迎区域 */
+.hero-section {
+    background: linear-gradient(rgba(28, 49, 44, 0.7), rgba(28, 49, 44, 0.7)),
+    url('img/campus-bg.jpg') center/cover no-repeat;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-animation {
+    position: relative;
+    height: 100px;
+    margin-top: 30px;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+}
+
+.circle:nth-child(1) {
+    width: 30px;
+    height: 30px;
+    background: var(--accent-green);
+    left: 45%;
+    animation-delay: 0s;
+}
+
+.circle:nth-child(2) {
+    width: 20px;
+    height: 20px;
+    background: var(--secondary-green-1);
+    left: 40%;
+    top: 40px;
+    animation-delay: 1s;
+}
+
+.circle:nth-child(3) {
+    width: 25px;
+    height: 25px;
+    background: var(--secondary-green-4);
+    left: 50%;
+    top: 20px;
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* 卡片样式 */
+.feature-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.feature-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.feature-card .card-body {
+    background-color: white;
+}
+
+/* 时间轴样式 */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--accent-green);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: var(--dark-green);
+    color: white;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--secondary-green-4);
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: var(--accent-green);
+}
+
+.social-icons i {
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+}
+
+.social-icons i:hover {
+    transform: translateY(-3px);
+    color: var(--accent-green);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 400px;
+    }
+
+    .timeline::after {
+        left: 31px;
+    }
+
+    /* 图片通用样式 */
+    img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* 卡片图片样式 */
+    .card-img-top {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        object-fit: cover;
+    }
+
+    /* 成就卡片图片 */
+    .achievement-card .card-img-top {
+        height: 200px;
+    }
+
+    /* 学习中心课程图片 */
+    .course-img {
+        height: 150px;
+        object-fit: cover;
+    }
+
+    /* 书籍封面图片 */
+    .book-cover {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    /* 社团活动图片 */
+    .club-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 市集商品图片 */
+    .product-img {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    /* 图片悬停效果 */
+    .card img {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+        transform: scale(1.03);
+    }
+    .club-img {
+        width: 100%;       /* 宽度充满父容器 */
+        height: 200px;     /* 固定高度 */
+        object-fit: cover; /* 保持比例填充容器，可能会裁剪 */
+        display: block;    /* 避免图片下方有间隙 */
+        border-radius: 10px 0 0 10px; /* 左侧圆角 */
+    }
+}
